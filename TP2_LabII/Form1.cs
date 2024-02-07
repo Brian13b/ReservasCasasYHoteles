@@ -231,7 +231,7 @@ namespace TP2_LabII
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            string ruta = @"TP2_LabII/Resource/Logo.png";
+            string ruta = Path.Combine(Application.StartupPath, "..", "..", "Resource", "Logo.png");
             imlogo = new Bitmap(ruta);
             Graphics g = e.Graphics;
             Font font = new Font("Arial", 12);
