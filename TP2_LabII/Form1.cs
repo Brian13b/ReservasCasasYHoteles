@@ -427,7 +427,7 @@ namespace TP2_LabII
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string rutaArchivoHTML = "\"C:\\Users\\Brian\\source\\repos\\TP2_LabII\\TP2_LabII\\bin\\Debug\\Ayuda\\ayuda.html\"";
+            string rutaArchivoHTML = Application.StartupPath + "\\Ayuda\\ayuda.html";
 
             try
             {
