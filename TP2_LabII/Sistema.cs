@@ -137,7 +137,7 @@ namespace TP2_LabII
             {
                 if(r.CodigoReserva.ToString() == codigo.ToString())
                 {
-                    retorno= r;
+                    retorno = r;
                 }
             }
             return retorno;

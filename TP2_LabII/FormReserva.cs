@@ -20,6 +20,7 @@ namespace TP2_LabII
             InitializeComponent();
             system = miSistema;
         }
+
         Reserva reservaAnular;
         private void btnBuscar_Click(object sender, EventArgs e)
         {

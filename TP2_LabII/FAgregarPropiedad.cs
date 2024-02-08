@@ -23,6 +23,7 @@ namespace TP2_LabII
         int codigo;
 
         public string[] rutasArchivos= new string [5];
+
         private void btnAdjuntarImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -45,14 +46,8 @@ namespace TP2_LabII
                 catch(MisExcepciones ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
-                
-                               
+                }              
             }
-
-
-
-
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -67,11 +62,6 @@ namespace TP2_LabII
             txtUbicacion.Text = p.Ubicacion;
             txtPrecioBase.Text = Convert.ToString(p.PrecioBase);
             txtDescripcion.Text = p.Descripcion;
-        }
-
-        private void txtPrecioBase_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

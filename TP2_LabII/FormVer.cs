@@ -67,5 +67,10 @@ namespace TP2_LabII
             Cantidad = Convert.ToInt32(tbCantidad.Text);
             huespedes = new string[Cantidad];
         }
+
+        private void tbCantidad_TextChanged(object sender, EventArgs e)
+        {
+            gbCargarHusped.Enabled = true;
+        }
     }
 }

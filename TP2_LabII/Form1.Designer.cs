@@ -203,6 +203,7 @@
             // 
             // numViajeros
             // 
+            this.numViajeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numViajeros.Location = new System.Drawing.Point(31, 111);
             this.numViajeros.Name = "numViajeros";
             this.numViajeros.Size = new System.Drawing.Size(186, 24);

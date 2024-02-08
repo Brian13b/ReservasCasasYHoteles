@@ -76,6 +76,8 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnDarBaja = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbHotel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEstrellas)).BeginInit();
@@ -552,15 +554,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(23, 515);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 16);
+            this.label4.Size = new System.Drawing.Size(57, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "Codigo";
             this.label4.Visible = false;
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnBuscar.Location = new System.Drawing.Point(21, 562);
             this.btnBuscar.Name = "btnBuscar";
@@ -571,12 +575,37 @@
             this.btnBuscar.Visible = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnDarBaja
+            // 
+            this.btnDarBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDarBaja.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDarBaja.Location = new System.Drawing.Point(747, 562);
+            this.btnDarBaja.Name = "btnDarBaja";
+            this.btnDarBaja.Size = new System.Drawing.Size(109, 37);
+            this.btnDarBaja.TabIndex = 11;
+            this.btnDarBaja.Text = "Dar Baja";
+            this.btnDarBaja.UseVisualStyleBackColor = true;
+            this.btnDarBaja.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(723, 537);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(165, 16);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Dar de baja propiedad";
+            this.label15.Visible = false;
+            // 
             // FAgregarPropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(910, 611);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.btnDarBaja);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCodigo);
@@ -662,5 +691,7 @@
         public System.Windows.Forms.TextBox txtCodigo;
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button btnBuscar;
+        public System.Windows.Forms.Button btnDarBaja;
+        public System.Windows.Forms.Label label15;
     }
 }

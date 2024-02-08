@@ -5,7 +5,6 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using TP2_LabII.Properties;
 
 
 namespace TP2_LabII
@@ -15,10 +14,10 @@ namespace TP2_LabII
         private Cliente cliente;
         public Sistema miSistema;
 
+        private int nroPag;
         Image imfondo;
-        Bitmap imlogo ;
+        Bitmap imlogo;
         string ResumenPropiedad;
-        private int nroPag = 0;
         string[] huesped;
 
         public Form1()
@@ -254,7 +253,7 @@ namespace TP2_LabII
             if (nroPag == 0)
             {
                 // Página 1
-                g.DrawImage(imlogo, xImagen-500, yImagen, anchoImagen, altoImagen);
+                g.DrawImage(imlogo, xImagen - 500, yImagen, anchoImagen, altoImagen);
                 g.DrawImage(imfondo, xImagen, yImagen, anchoImagen, altoImagen);
                 g.DrawRectangle(penContenido, margenDerecho, margenSuperior, anchoContenido, altoContenido);
                 g.DrawString(ResumenPropiedad, font, brush, new RectangleF(margenDerecho + 10, margenSuperior + 10, anchoContenido + 10, altoContenido + 10));
@@ -365,6 +364,8 @@ namespace TP2_LabII
                 p.PrecioBase = Convert.ToDouble(vModificar.txtPrecioBase.Text);
                 p.Descripcion = vModificar.txtDescripcion.Text;
             }
+
+            CargarDatagrid();
         }  // Modificar Propiedad - Anda joya
 
         private void bajaPropiedadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -374,8 +375,6 @@ namespace TP2_LabII
 
             if (selectedRow != null)
             {
-
-
                 string codigoPropiedad = selectedRow.Cells["colCodigo"].Value.ToString();
                 Propiedad propiedadSeleccionada = null;
 
@@ -619,7 +618,7 @@ namespace TP2_LabII
             {
                 if (Convert.ToString(p.Codigo) == codigoseleccionado)
                 {
-                    ventanaVerMas.lbServicios.Items.Add(p.ToString());
+                    ventanaVerMas.txtDescripcion.Text = p.ToString();
 
                     for (int i = 0; i < p.listaImagenes.Length; i++)
                     {
@@ -714,7 +713,7 @@ namespace TP2_LabII
             }
         }
 
-       
+
         #endregion
 
 
