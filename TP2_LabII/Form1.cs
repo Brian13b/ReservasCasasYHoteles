@@ -203,7 +203,7 @@ namespace TP2_LabII
             {
                 MostrarVentanaVerMas(e.RowIndex);
             }
-        }  // Boton Ver Mas - Anda Bien pero flojo 
+        }  // Boton Ver Mas - Anda Bien 
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -317,7 +317,7 @@ namespace TP2_LabII
             font.Dispose();
             brush.Dispose();
             penContenido.Dispose();
-        }  // Imprimible - Falta agregar logo
+        }  // Imprimible - Listo el logo
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -447,6 +447,197 @@ namespace TP2_LabII
             acercaDe.ShowDialog();
             acercaDe.Dispose();
         } // Ventana Acerca de -  Anda perfecto
+
+        private void cantidadDeReservasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormEstadisticas miEstadistica = new FormEstadisticas();
+            miEstadistica.panel2.Visible = false;
+            miEstadistica.panel1.Visible = true;
+            miEstadistica.Load += (s, args) =>
+            {
+                // Aquí se realiza la configuración del gráfico en el Panel
+                Panel panelGrafico = miEstadistica.panel1; // Asegúrate de que el Panel se llame panelGrafico
+
+                panelGrafico.Paint += (senderPanel, argsPanel) =>
+                {
+                    Graphics dibujar = argsPanel.Graphics;
+                    Brush brush = new SolidBrush(Color.Black);
+                    Color colores = new Color();
+                    Font font = new Font("Arial", 15, FontStyle.Underline);
+                    Random random = new Random();
+
+                    dibujar.DrawString("Porcentaje de reservas y tipo de alojamiento.", font, brush, 370, 50);
+
+                    int posicion = 0;
+                    int cuadradoY = 100;
+                    int totalReservasCasas = 0;
+                    int totalReservasHoteles = 0;
+                    int totalReservasFindes = 0;
+                    int totalReservas = 0;
+
+                    foreach (Reserva b in miSistema.Reservas)
+                    {
+                        if (b.Propiedad is Casa)
+                        {
+                            if (((Casa)b.Propiedad).EsFinde)
+                            {
+                                totalReservasFindes++;
+                            }
+                            else
+                            {
+                                totalReservasCasas++;
+                            }
+
+                        }
+                        if (b.Propiedad is Hotel)
+                        {
+                            totalReservasHoteles++;
+                        }
+                    }
+
+                    totalReservas = totalReservasCasas + totalReservasHoteles + totalReservasFindes;
+
+                    // Porcion Casas
+                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    brush = new SolidBrush(colores);
+                    int movimientoC = (totalReservasCasas * 360) / totalReservas;
+                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoC);
+                    posicion += movimientoC;
+
+                    double porcentaje = (double)(totalReservasCasas * 100) / totalReservas;
+
+                    font = new Font("Arial", 15);
+                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
+                    string texto = $"% {porcentaje:f2} Casas";
+                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
+                    cuadradoY += 35;
+
+                    // Porcion Hoteles
+                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    brush = new SolidBrush(colores);
+                    int movimientoH = (totalReservasHoteles * 360) / totalReservas;
+                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoH);
+                    posicion += movimientoH;
+
+                    porcentaje = (double)(totalReservasHoteles * 100) / totalReservas;
+
+                    font = new Font("Arial", 15);
+                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
+                    texto = $"% {porcentaje:f2} Hotel";
+                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
+                    cuadradoY += 35;
+
+                    // Porcion Casas Finde
+                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    brush = new SolidBrush(colores);
+                    int movimientoCF = (totalReservasFindes * 360) / totalReservas;
+                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoCF);
+                    posicion += movimientoCF;
+
+                    porcentaje = (double)(totalReservasFindes * 100) / totalReservas;
+
+                    font = new Font("Arial", 15);
+                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
+                    texto = $"% {porcentaje:f2} Casas Fin de Semana";
+                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
+                    cuadradoY += 35;
+                };
+
+                // Invalidar el panel para que se dispare el evento Paint
+                panelGrafico.Invalidate();
+            };
+            // Show the modal form
+            miEstadistica.ShowDialog();
+        }    // Grafico de torta - Anda Bien
+
+        private void cantidadDeHuespedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            FormEstadisticas miEstadistica1 = new FormEstadisticas();
+            miEstadistica1.panel1.Visible = false;
+            miEstadistica1.panel2.Visible = true;
+
+            miEstadistica1.Load += (s, args) =>
+            {
+                // Aquí se realiza la configuración del gráfico en el Panel
+                Panel panelGrafico = miEstadistica1.panel2; // Asegúrate de que el Panel se llame panelGrafico
+
+                panelGrafico.Paint += (senderPanel, argsPanel) =>
+                {
+
+                    Graphics dibujar = argsPanel.Graphics;
+                    Brush brushTitulo = new SolidBrush(Color.Black);
+                    Brush brush = new SolidBrush(Color.Black);
+                    Font fontTitulo = new Font("Arial", 14, FontStyle.Bold);
+                    Font font = new Font("Arial", 14);
+                    Color colores = new Color();
+                    Random random = new Random();
+
+                    dibujar.DrawString("Porcentaje de reservas segun cantidad de huespedes.", fontTitulo, brushTitulo, 380, 60);
+
+                    int posX = 180;
+                    int posY = 130;
+                    int largo = 1000;
+                    int ancho = 30;
+
+                    int[] h = new int[5];
+                    int reservasTotales = miSistema.Reservas.Count;
+
+                    foreach (Reserva r in miSistema.Reservas)
+                    {
+                        if (r.CantHuespedes == 1)
+                        {
+                            h[0] += 1;
+                        }
+                        if (r.CantHuespedes == 2)
+                        {
+                            h[1] += 1;
+                        }
+                        if (r.CantHuespedes == 3)
+                        {
+                            h[2] += 1;
+                        }
+                        if (r.CantHuespedes == 4)
+                        {
+                            h[3] += 1;
+                        }
+                        if (r.CantHuespedes == 5)
+                        {
+                            h[4] += 1;
+                        }
+                        if (r.CantHuespedes >= 6)
+                        {
+                            h[5] += 1;
+                        }
+                    }
+
+                    for (int i = 0; i < h.Length; i++)
+                    {
+                        colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                        brush = new SolidBrush(colores);
+
+                        int largoFinal = (h[i] * largo) / reservasTotales;
+                        dibujar.FillRectangle(brush, posX + 30, posY, largoFinal, ancho);
+                        string texto = "%" + h[i] * 100 / reservasTotales + " de reservas totales.";
+                        dibujar.DrawString(texto, font, brushTitulo, posX + 30, posY + 5);
+                        dibujar.DrawString("Huespedes: " + (i + 1), font, brushTitulo, posX - 130, posY + 6);
+                        posY += 50;
+                    }
+                    //colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+                    //brush = new SolidBrush(colores);
+                    //int largoFinall = (h[4] * largo) / reservasTotales;
+                    //dibujar.FillRectangle(brush, posX + 30, posY, largoFinall, ancho);
+                    //string textoF = "%" + h[4] * 100 / reservasTotales + " de reservas totales.";
+                    //dibujar.DrawString(textoF, font, brushTitulo, posX + 30, posY + 5);
+                    //dibujar.DrawString("Mas de 6 huespedes:", font, brushTitulo, posX - 165, posY + 6);
+                };
+                panelGrafico.Invalidate();
+            };
+            miEstadistica1.ShowDialog();
+
+
+
+        }  // Grafico de barras - Anda Bien
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -713,201 +904,13 @@ namespace TP2_LabII
             }
         }
 
-
         #endregion
 
-
-
-        private void cantidadDeReservasToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            FormEstadisticas miEstadistica = new FormEstadisticas();
-            miEstadistica.panel2.Visible = false;
-            miEstadistica.panel1.Visible = true;
-            miEstadistica.Load += (s, args) =>
-            {
-                // Aquí se realiza la configuración del gráfico en el Panel
-                Panel panelGrafico = miEstadistica.panel1; // Asegúrate de que el Panel se llame panelGrafico
-
-                panelGrafico.Paint += (senderPanel, argsPanel) =>
-                {
-                    Graphics dibujar = argsPanel.Graphics;
-                    Brush brush = new SolidBrush(Color.Black);
-                    Color colores = new Color();
-                    Font font = new Font("Arial", 15, FontStyle.Underline);
-                    Random random = new Random();
-
-                    dibujar.DrawString("Porcentaje de reservas y tipo de alojamiento.", font, brush, 370, 50);
-
-                    int posicion = 0;
-                    int cuadradoY = 100;
-                    int totalReservasCasas = 0;
-                    int totalReservasHoteles = 0;
-                    int totalReservasFindes = 0;
-                    int totalReservas = 0;
-
-                    foreach (Reserva b in miSistema.Reservas)
-                    {
-                        if (b.Propiedad is Casa)
-                        {
-                            if (((Casa)b.Propiedad).EsFinde)
-                            {
-                                totalReservasFindes++;
-                            }
-                            else
-                            {
-                                totalReservasCasas++;
-                            }
-
-                        }
-                        if (b.Propiedad is Hotel)
-                        {
-                            totalReservasHoteles++;
-                        }
-                    }
-
-                    totalReservas = totalReservasCasas + totalReservasHoteles + totalReservasFindes;
-
-                    // Porcion Casas
-                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    brush = new SolidBrush(colores);
-                    int movimientoC = (totalReservasCasas * 360) / totalReservas;
-                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoC);
-                    posicion += movimientoC;
-
-                    double porcentaje = (double)(totalReservasCasas * 100) / totalReservas;
-
-                    font = new Font("Arial", 15);
-                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
-                    string texto = $"% {porcentaje:f2} Casas";
-                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
-                    cuadradoY += 35;
-
-                    // Porcion Hoteles
-                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    brush = new SolidBrush(colores);
-                    int movimientoH = (totalReservasHoteles * 360) / totalReservas;
-                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoH);
-                    posicion += movimientoH;
-
-                    porcentaje = (double)(totalReservasHoteles * 100) / totalReservas;
-
-                    font = new Font("Arial", 15);
-                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
-                    texto = $"% {porcentaje:f2} Hotel";
-                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
-                    cuadradoY += 35;
-
-                    // Porcion Casas Finde
-                    colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    brush = new SolidBrush(colores);
-                    int movimientoCF = (totalReservasFindes * 360) / totalReservas;
-                    dibujar.FillPie(brush, 50, 80, 300, 300, posicion, movimientoCF);
-                    posicion += movimientoCF;
-
-                    porcentaje = (double)(totalReservasFindes * 100) / totalReservas;
-
-                    font = new Font("Arial", 15);
-                    dibujar.FillRectangle(brush, new System.Drawing.RectangleF(400, cuadradoY, 25, 25));
-                    texto = $"% {porcentaje:f2} Casas Fin de Semana";
-                    dibujar.DrawString(texto, font, brush, 430, cuadradoY);
-                    cuadradoY += 35;
-                };
-
-                // Invalidar el panel para que se dispare el evento Paint
-                panelGrafico.Invalidate();
-            };
-            // Show the modal form
-            miEstadistica.ShowDialog();
-        }
-
-        private void cantidadDeHuespedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            FormEstadisticas miEstadistica1 = new FormEstadisticas();
-            miEstadistica1.panel1.Visible = false;
-            miEstadistica1.panel2.Visible = true;
-
-            miEstadistica1.Load += (s, args) =>
-            {
-                // Aquí se realiza la configuración del gráfico en el Panel
-                Panel panelGrafico = miEstadistica1.panel2; // Asegúrate de que el Panel se llame panelGrafico
-
-                panelGrafico.Paint += (senderPanel, argsPanel) =>
-                {
-
-                    Graphics dibujar = argsPanel.Graphics;
-                    Brush brushTitulo = new SolidBrush(Color.Black);
-                    Brush brush = new SolidBrush(Color.Black);
-                    Font fontTitulo = new Font("Arial", 14, FontStyle.Bold);
-                    Font font = new Font("Arial", 14);
-                    Color colores = new Color();
-                    Random random = new Random();
-
-                    dibujar.DrawString("Porcentaje de reservas segun cantidad de huespedes.", fontTitulo, brushTitulo, 380, 60);
-
-                    int posX = 180;
-                    int posY = 130;
-                    int largo = 1000;
-                    int ancho = 30;
-
-                    int[] h = new int[5];
-                    int reservasTotales = miSistema.Reservas.Count;
-
-                    foreach (Reserva r in miSistema.Reservas)
-                    {
-                        if (r.CantHuespedes == 1)
-                        {
-                            h[0] += 1;
-                        }
-                        if (r.CantHuespedes == 2)
-                        {
-                            h[1] += 1;
-                        }
-                        if (r.CantHuespedes == 3)
-                        {
-                            h[2] += 1;
-                        }
-                        if (r.CantHuespedes == 4)
-                        {
-                            h[3] += 1;
-                        }
-                        if (r.CantHuespedes == 5)
-                        {
-                            h[4] += 1;
-                        }
-                        if (r.CantHuespedes >= 6)
-                        {
-                            h[5] += 1;
-                        }
-                    }
-
-                    for (int i = 0; i < h.Length; i++)
-                    {
-                        colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                        brush = new SolidBrush(colores);
-
-                        int largoFinal = (h[i] * largo) / reservasTotales;
-                        dibujar.FillRectangle(brush, posX + 30, posY, largoFinal, ancho);
-                        string texto = "%" + h[i] * 100 / reservasTotales + " de reservas totales.";
-                        dibujar.DrawString(texto, font, brushTitulo, posX + 30, posY + 5);
-                        dibujar.DrawString("Huespedes: " + (i + 1), font, brushTitulo, posX - 130, posY + 6);
-                        posY += 50;
-                    }
-                    //colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    //brush = new SolidBrush(colores);
-                    //int largoFinall = (h[4] * largo) / reservasTotales;
-                    //dibujar.FillRectangle(brush, posX + 30, posY, largoFinall, ancho);
-                    //string textoF = "%" + h[4] * 100 / reservasTotales + " de reservas totales.";
-                    //dibujar.DrawString(textoF, font, brushTitulo, posX + 30, posY + 5);
-                    //dibujar.DrawString("Mas de 6 huespedes:", font, brushTitulo, posX - 165, posY + 6);
-                };
-                panelGrafico.Invalidate();
-            };
-            miEstadistica1.ShowDialog();
-
-
-
-        }
+        //Basicamente este completo.
+        //Falta el tema de importar y exportar el calendario de reservas de una propiedad en particular.
+        //Falta mejorar el tema de importar y exportar los clientes.
+        //Falta mejorar el tema de la estadistica.
+        //Por ultimo, una mejora de la interfaz grafica, desde lo estetico hasta lo funcional.
     }
 }
 

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Text;
+using System.IO;
+using System.Windows.Forms;
 
 namespace TP2_LabII
 {
     [Serializable]
     public class Reserva
     {
-        private static int ultimoNumeroReserva = 1000; // Inicializa con 1000 y se irá incrementando
+        private static int ultimoNumeroReserva; // Inicializa con 1000 y se irá incrementando
 
         public string CodigoReserva { get; private set; }
         public DateTime FechaIngreso { get; set; }
@@ -54,6 +56,45 @@ namespace TP2_LabII
             Cliente = cliente;
             CantHuespedes = cantHuespedes;
             CalcularCosto(propiedad);
+        }
+
+        static Reserva()
+        {
+            ultimoNumeroReserva = ObtenerUltimoCodigo();
+        }
+
+        public static int ObtenerUltimoCodigo()
+        {
+            string rutaArchivo = "ultimocodigo.txt";
+
+            if (File.Exists(rutaArchivo))
+            {
+                try
+                {
+                    string contenido = File.ReadAllText(rutaArchivo);
+                    return int.Parse(contenido);
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show(ee.Message);
+                }
+            }
+
+            return 0;
+        }
+
+        public static void GuardarUltimoCodigo()
+        {
+            string rutaArchivo = "ultimocodigo.txt";
+
+            try
+            {
+                File.WriteAllText(rutaArchivo, ultimoNumeroReserva.ToString());
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
         }
 
         private double CalcularCosto(Propiedad propiedad)

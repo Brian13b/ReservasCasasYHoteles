@@ -71,6 +71,8 @@
             this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cantidadDeReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cantidadDeHuespedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numViajeros)).BeginInit();
@@ -362,6 +364,8 @@
             this.cambiarContraseñaToolStripMenuItem,
             this.toolStripSeparator3,
             this.importarToolStripMenuItem,
+            this.exportarReservasToolStripMenuItem,
+            this.impoToolStripMenuItem,
             this.toolStripSeparator1,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -487,6 +491,18 @@
             this.cantidadDeHuespedToolStripMenuItem.Text = "Cantidad de Huesped";
             this.cantidadDeHuespedToolStripMenuItem.Click += new System.EventHandler(this.cantidadDeHuespedToolStripMenuItem_Click);
             // 
+            // exportarReservasToolStripMenuItem
+            // 
+            this.exportarReservasToolStripMenuItem.Name = "exportarReservasToolStripMenuItem";
+            this.exportarReservasToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.exportarReservasToolStripMenuItem.Text = "Exportar Reservas";
+            // 
+            // impoToolStripMenuItem
+            // 
+            this.impoToolStripMenuItem.Name = "impoToolStripMenuItem";
+            this.impoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.impoToolStripMenuItem.Text = "Impo";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -559,6 +575,8 @@
         private System.Windows.Forms.ToolStripMenuItem estadisticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cantidadDeReservasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cantidadDeHuespedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportarReservasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem impoToolStripMenuItem;
     }
 }
 
