@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace TP2_LabII
 {
     [Serializable]
-    public class Sistema
+    public class Sistema : IExportable
     {
         public List<Cliente> Clientes { get; private set; }
         public List<Propiedad> Propiedades { get; private set; }
@@ -128,16 +128,16 @@ namespace TP2_LabII
                 throw ex;
             }
         } // Genera reserva de hotel
-        
+
         public Reserva BuscarReserva(string codigo)
         {
             Reserva retorno = null;
 
-            foreach(Reserva r in Reservas) 
+            foreach (Reserva r in Reservas)
             {
-                if(r.CodigoReserva.ToString() == codigo.ToString())
+                if (r.CodigoReserva.ToString() == codigo.ToString())
                 {
-                    retorno= r;
+                    retorno = r;
                 }
             }
             return retorno;
@@ -298,50 +298,46 @@ namespace TP2_LabII
             return propiedadesFiltradas;
         }
 
-        public void ImportarClientes()
+        public void ExportarClientes(List<Cliente> clientes, string rutaArchivo)
         {
-            string rutaArchivo = Application.StartupPath + "\\clientes.txt";
-            if (File.Exists(rutaArchivo))
-            {
-                FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
-                StreamReader sr = new StreamReader(fs);
-                Cliente nuevo;
-                string renglon;
-                string[] datos;
-                while (!sr.EndOfStream)
-                {
-                    renglon = sr.ReadLine();
-                    datos = renglon.Split(';');
-                    if (datos.Length >= 6)
-                    {
-                        nuevo = new Cliente(datos[0], datos[1], Convert.ToInt32(datos[2]), datos[3], datos[4], datos[5]);
-                        nuevo.Nombre = datos[0];
-                        nuevo.Apellido = datos[1];
-                        nuevo.Dni = Convert.ToInt32(datos[2]);
-                        nuevo.CorreoElectronico = datos[3];
-                        Clientes.Add(nuevo);
-                    }
-                }
-                sr.Close();
-                fs.Dispose();
-            }
-        }
-        public void ExportarClientes()
-        {
-            string rutaArchivo = Application.StartupPath + "\\clientes.txt";
-
             if (File.Exists(rutaArchivo))
                 File.Delete(rutaArchivo);
 
-            FileStream fs = new FileStream(rutaArchivo, FileMode.CreateNew, FileAccess.Write);
+            FileStream fs = new FileStream(rutaArchivo, FileMode.Create, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
-            foreach (Cliente cliente in Clientes)
+
+            foreach (Cliente cliente in clientes)
             {
-                sw.WriteLine(cliente.ToString());
+                sw.WriteLine($"{cliente.Dni};{cliente.Nombre};{cliente.Apellido}");
             }
+
             sw.Close();
             fs.Close();
+
         }
+
+        public void ExportarReservas(List<Reserva> reservas)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Title = "Guardar reservas en archivo de texto";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string rutaArchivo = saveFileDialog.FileName;
+                FileStream fs = new FileStream(rutaArchivo, FileMode.Append, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+
+                foreach (Reserva reserva in reservas)
+                {
+                    sw.WriteLine($"{reserva.Propiedad};{reserva.Cliente};{reserva.FechaIngreso};{reserva.FechaEgreso}");
+                }
+
+                sw.Close();
+                fs.Close();
+            }
+        }
+
         public void ExportarPropiedades()
         {
             string rutaArchivo = Application.StartupPath + "\\propiedades.txt";
@@ -367,6 +363,7 @@ namespace TP2_LabII
             sw.Close();
             fs.Close();
         }
+
         public void ImportarPropiedades()
         {
             string rutaArchivo = Application.StartupPath + "\\propiedades.txt";

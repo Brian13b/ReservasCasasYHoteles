@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Habitacion.cs" />
     <Compile Include="Hotel.cs" />
+    <Compile Include="IExportable.cs" />
     <Compile Include="MisExcepciones.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +144,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resource\flecha izq.png" />
+    <None Include="Resource\flecha der.png" />
     <Content Include="Resource\Logo.png" />
     <None Include="Resource\l.png" />
     <None Include="Resource\Lupa.png" />

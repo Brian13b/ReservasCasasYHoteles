@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAnt = new System.Windows.Forms.Button();
-            this.btnSig = new System.Windows.Forms.Button();
-            this.lbServicios = new System.Windows.Forms.ListBox();
-            this.pbImagen = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVer));
             this.btnReservar = new System.Windows.Forms.Button();
             this.calReserva = new System.Windows.Forms.MonthCalendar();
             this.cbxHabitacion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbCargarHusped = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtDni = new System.Windows.Forms.TextBox();
@@ -47,49 +44,15 @@
             this.btnCargar = new System.Windows.Forms.Button();
             this.tbCantidad = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
+            this.btnSig = new System.Windows.Forms.Button();
+            this.btnAnt = new System.Windows.Forms.Button();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbCargarHusped.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnAnt
-            // 
-            this.btnAnt.Location = new System.Drawing.Point(12, 122);
-            this.btnAnt.Name = "btnAnt";
-            this.btnAnt.Size = new System.Drawing.Size(47, 78);
-            this.btnAnt.TabIndex = 1;
-            this.btnAnt.Text = "Anterior";
-            this.btnAnt.UseVisualStyleBackColor = true;
-            this.btnAnt.Click += new System.EventHandler(this.btnAnt_Click);
-            // 
-            // btnSig
-            // 
-            this.btnSig.Location = new System.Drawing.Point(384, 122);
-            this.btnSig.Name = "btnSig";
-            this.btnSig.Size = new System.Drawing.Size(47, 78);
-            this.btnSig.TabIndex = 2;
-            this.btnSig.Text = "Siguiente";
-            this.btnSig.UseVisualStyleBackColor = true;
-            this.btnSig.Click += new System.EventHandler(this.btnSig_Click);
-            // 
-            // lbServicios
-            // 
-            this.lbServicios.FormattingEnabled = true;
-            this.lbServicios.ItemHeight = 16;
-            this.lbServicios.Location = new System.Drawing.Point(12, 320);
-            this.lbServicios.Name = "lbServicios";
-            this.lbServicios.Size = new System.Drawing.Size(419, 244);
-            this.lbServicios.TabIndex = 3;
-            // 
-            // pbImagen
-            // 
-            this.pbImagen.Location = new System.Drawing.Point(12, 18);
-            this.pbImagen.Name = "pbImagen";
-            this.pbImagen.Size = new System.Drawing.Size(419, 296);
-            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbImagen.TabIndex = 0;
-            this.pbImagen.TabStop = false;
             // 
             // btnReservar
             // 
@@ -141,21 +104,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hotel";
             // 
-            // groupBox2
+            // gbCargarHusped
             // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.dtpNacimiento);
-            this.groupBox2.Controls.Add(this.txtDni);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtNombreApellido);
-            this.groupBox2.Controls.Add(this.btnCargar);
-            this.groupBox2.Location = new System.Drawing.Point(456, 109);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(548, 182);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cargar Huespedes";
+            this.gbCargarHusped.Controls.Add(this.label4);
+            this.gbCargarHusped.Controls.Add(this.dtpNacimiento);
+            this.gbCargarHusped.Controls.Add(this.txtDni);
+            this.gbCargarHusped.Controls.Add(this.label3);
+            this.gbCargarHusped.Controls.Add(this.label2);
+            this.gbCargarHusped.Controls.Add(this.txtNombreApellido);
+            this.gbCargarHusped.Controls.Add(this.btnCargar);
+            this.gbCargarHusped.Enabled = false;
+            this.gbCargarHusped.Location = new System.Drawing.Point(456, 109);
+            this.gbCargarHusped.Name = "gbCargarHusped";
+            this.gbCargarHusped.Size = new System.Drawing.Size(548, 182);
+            this.gbCargarHusped.TabIndex = 9;
+            this.gbCargarHusped.TabStop = false;
+            this.gbCargarHusped.Text = "Cargar Huespedes";
             // 
             // label4
             // 
@@ -168,6 +132,7 @@
             // 
             // dtpNacimiento
             // 
+            this.dtpNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNacimiento.Location = new System.Drawing.Point(302, 65);
             this.dtpNacimiento.Name = "dtpNacimiento";
             this.dtpNacimiento.Size = new System.Drawing.Size(215, 22);
@@ -221,6 +186,7 @@
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(178, 22);
             this.tbCantidad.TabIndex = 15;
+            this.tbCantidad.TextChanged += new System.EventHandler(this.tbCantidad_TextChanged);
             this.tbCantidad.Leave += new System.EventHandler(this.tbCantidad_Leave);
             // 
             // groupBox3
@@ -233,37 +199,81 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Cantidad Huespedes";
             // 
+            // btnSig
+            // 
+            this.btnSig.BackgroundImage = global::TP2_LabII.Properties.Resources.flecha_der;
+            this.btnSig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSig.Location = new System.Drawing.Point(387, 141);
+            this.btnSig.Name = "btnSig";
+            this.btnSig.Size = new System.Drawing.Size(40, 40);
+            this.btnSig.TabIndex = 2;
+            this.btnSig.UseVisualStyleBackColor = true;
+            this.btnSig.Click += new System.EventHandler(this.btnSig_Click);
+            // 
+            // btnAnt
+            // 
+            this.btnAnt.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnt.BackgroundImage = global::TP2_LabII.Properties.Resources.flecha_izq;
+            this.btnAnt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnt.Location = new System.Drawing.Point(12, 141);
+            this.btnAnt.Name = "btnAnt";
+            this.btnAnt.Size = new System.Drawing.Size(40, 40);
+            this.btnAnt.TabIndex = 1;
+            this.btnAnt.UseVisualStyleBackColor = false;
+            this.btnAnt.Click += new System.EventHandler(this.btnAnt_Click);
+            // 
+            // pbImagen
+            // 
+            this.pbImagen.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pbImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbImagen.Location = new System.Drawing.Point(12, 18);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(419, 296);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImagen.TabIndex = 0;
+            this.pbImagen.TabStop = false;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(12, 320);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.ReadOnly = true;
+            this.txtDescripcion.Size = new System.Drawing.Size(419, 242);
+            this.txtDescripcion.TabIndex = 17;
+            // 
             // FormVer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1020, 574);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbCargarHusped);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.calReserva);
             this.Controls.Add(this.btnReservar);
-            this.Controls.Add(this.lbServicios);
             this.Controls.Add(this.btnSig);
             this.Controls.Add(this.btnAnt);
             this.Controls.Add(this.pbImagen);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormVer";
+            this.Text = "Reservas";
             this.Load += new System.EventHandler(this.FormVer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbCargarHusped.ResumeLayout(false);
+            this.gbCargarHusped.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        public System.Windows.Forms.ListBox lbServicios;
         private System.Windows.Forms.Button btnReservar;
         public System.Windows.Forms.PictureBox pbImagen;
         public System.Windows.Forms.Button btnAnt;
@@ -272,7 +282,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cbxHabitacion;
         public System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbCargarHusped;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -282,5 +292,6 @@
         private System.Windows.Forms.DateTimePicker dtpNacimiento;
         public System.Windows.Forms.TextBox tbCantidad;
         private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.TextBox txtDescripcion;
     }
 }

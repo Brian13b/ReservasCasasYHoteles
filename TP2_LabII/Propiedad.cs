@@ -41,6 +41,7 @@ namespace TP2_LabII
         {
             ultimoCodigo = ObtenerUltimoCodigo();
         }
+
         private static int ObtenerUltimoCodigo()
         {
             string rutaArchivo = "ultimocodigo.txt";

@@ -52,9 +52,12 @@ namespace TP2_LabII
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"Nombre: {Nombre}");
-            sb.AppendLine($"Camas: {Camas}");
-            sb.AppendLine($"Precio Base: {PrecioBase:C}");
+            sb.AppendLine($"Nombre: {Nombre} ");
+            sb.AppendLine($"Capacidad: {Camas} ");
+            sb.AppendLine($"Precio Base: {PrecioBase:C} ");
+            sb.AppendLine($" ");
+            sb.AppendLine($"Descripcion:");
+            sb.AppendLine($"{Descripcion}");
             return sb.ToString();
         }
     }
