@@ -57,7 +57,9 @@
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.importarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edicionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,8 +73,6 @@
             this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cantidadDeReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cantidadDeHuespedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportarReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.impoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostrarPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numViajeros)).BeginInit();
@@ -363,7 +363,7 @@
             this.nuevoToolStripMenuItem,
             this.cambiarContraseñaToolStripMenuItem,
             this.toolStripSeparator3,
-            this.importarToolStripMenuItem,
+            this.ExportarClientesToolStripMenuItem,
             this.exportarReservasToolStripMenuItem,
             this.impoToolStripMenuItem,
             this.toolStripSeparator1,
@@ -390,12 +390,25 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(223, 6);
             // 
-            // importarToolStripMenuItem
+            // ExportarClientesToolStripMenuItem
             // 
-            this.importarToolStripMenuItem.Name = "importarToolStripMenuItem";
-            this.importarToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
-            this.importarToolStripMenuItem.Text = "Exportar Clientes";
-            this.importarToolStripMenuItem.Click += new System.EventHandler(this.importarToolStripMenuItem_Click);
+            this.ExportarClientesToolStripMenuItem.Name = "ExportarClientesToolStripMenuItem";
+            this.ExportarClientesToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.ExportarClientesToolStripMenuItem.Text = "Exportar Clientes";
+            this.ExportarClientesToolStripMenuItem.Click += new System.EventHandler(this.ExportarClientesToolStripMenuItem_Click);
+            // 
+            // exportarReservasToolStripMenuItem
+            // 
+            this.exportarReservasToolStripMenuItem.Name = "exportarReservasToolStripMenuItem";
+            this.exportarReservasToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.exportarReservasToolStripMenuItem.Text = "Exportar Reservas";
+            this.exportarReservasToolStripMenuItem.Click += new System.EventHandler(this.exportarReservasToolStripMenuItem_Click);
+            // 
+            // impoToolStripMenuItem
+            // 
+            this.impoToolStripMenuItem.Name = "impoToolStripMenuItem";
+            this.impoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.impoToolStripMenuItem.Text = "Impo";
             // 
             // toolStripSeparator1
             // 
@@ -491,18 +504,6 @@
             this.cantidadDeHuespedToolStripMenuItem.Text = "Cantidad de Huesped";
             this.cantidadDeHuespedToolStripMenuItem.Click += new System.EventHandler(this.cantidadDeHuespedToolStripMenuItem_Click);
             // 
-            // exportarReservasToolStripMenuItem
-            // 
-            this.exportarReservasToolStripMenuItem.Name = "exportarReservasToolStripMenuItem";
-            this.exportarReservasToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
-            this.exportarReservasToolStripMenuItem.Text = "Exportar Reservas";
-            // 
-            // impoToolStripMenuItem
-            // 
-            this.impoToolStripMenuItem.Name = "impoToolStripMenuItem";
-            this.impoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
-            this.impoToolStripMenuItem.Text = "Impo";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -561,7 +562,7 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem edicionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem importarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportarClientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;

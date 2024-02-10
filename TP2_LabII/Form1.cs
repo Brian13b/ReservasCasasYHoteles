@@ -62,6 +62,7 @@ namespace TP2_LabII
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //string rutaArchivo = Application.StartupPath + "\\clientes.txt";
             FileStream fs = null;
 
             if (File.Exists(archivoInicial))
@@ -71,7 +72,7 @@ namespace TP2_LabII
             {
                 fs = new FileStream(archivoInicial, FileMode.CreateNew, FileAccess.Write);
                 datosBinarios.Serialize(fs, miSistema);
-                miSistema.ExportarClientes();
+                //miSistema.ExportarClientes(miSistema.Clientes, rutaArchivo);
             }
             catch (Exception ee)
             {
@@ -419,10 +420,24 @@ namespace TP2_LabII
             }
         }  // Anular Reserva - Busca y anula una reserva
 
-        private void importarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportarClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            miSistema.ExportarClientes();
-        } // Exportar clientes - Anda bien
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Title = "Guardar clientes en archivo de texto";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string rutaArchivo = saveFileDialog.FileName;
+                miSistema.ExportarClientes(miSistema.Clientes, rutaArchivo);
+            }
+        } // Exportar clientes
+
+        private void exportarReservasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            miSistema.ExportarReservas(miSistema.Reservas);
+        } // Exportar reservas 
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -687,7 +702,7 @@ namespace TP2_LabII
                                 nuevoToolStripMenuItem.Enabled = false;
                                 if (c.Usuario != "empleado")
                                 {
-                                    importarToolStripMenuItem.Enabled = false;
+                                    ExportarClientesToolStripMenuItem.Enabled = false;
                                 }
                             }
                             MessageBox.Show($"Cliente encontrado. {c.Nombre} {c.Apellido}");
