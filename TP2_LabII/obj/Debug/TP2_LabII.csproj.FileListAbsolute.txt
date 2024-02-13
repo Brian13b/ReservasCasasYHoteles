@@ -45,3 +45,4 @@ C:\repos_battauz\ReservasCasasYHoteles\TP2_LabII\obj\Debug\TP2_LabII.csproj.Gene
 C:\repos_battauz\ReservasCasasYHoteles\TP2_LabII\obj\Debug\TP2_LabII.csproj.CoreCompileInputs.cache
 C:\repos_battauz\ReservasCasasYHoteles\TP2_LabII\obj\Debug\TP2_LabII.exe
 C:\repos_battauz\ReservasCasasYHoteles\TP2_LabII\obj\Debug\TP2_LabII.pdb
+C:\repos_battauz\ReservasCasasYHoteles\TP2_LabII\obj\Debug\TP2_LabII.FormCSV.resources

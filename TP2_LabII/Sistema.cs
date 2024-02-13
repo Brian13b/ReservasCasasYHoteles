@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 
 namespace TP2_LabII
@@ -306,6 +307,8 @@ namespace TP2_LabII
             FileStream fs = new FileStream(rutaArchivo, FileMode.Create, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
 
+            sw.WriteLine($"DNI;Nombre;Apellido");
+
             foreach (Cliente cliente in clientes)
             {
                 sw.WriteLine($"{cliente.Dni};{cliente.Nombre};{cliente.Apellido}");
@@ -394,6 +397,44 @@ namespace TP2_LabII
                 fs.Close();
             }
         }
+
+        public void ExportarCalendario(string propiedad, string path)
+        {
+            string rutaArchivo = path;
+
+            FileStream fs = new FileStream(rutaArchivo, FileMode.Append, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+
+            string NombrePropiedad = propiedad;
+
+            sw.WriteLine($"Codigo Reserva;Fecha ingrso;Fecha Egreso");
+
+            foreach(Reserva r in Reservas)
+            {            
+                if(NombrePropiedad== r.Propiedad.Nombre)
+                {
+                    sw.WriteLine($"{r.CodigoReserva};{r.FechaIngreso};{r.FechaEgreso}");
+                }
+            }
+
+            sw.Close();
+            fs.Close();
+        }
+
+        public void ImportarCalendario(string propiedad, string path)
+        {
+            string rutaArchivo = path;
+
+            FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            string nombre = propiedad;
+            string renglon = sr.ReadLine();
+            while(renglon != null)
+            {
+
+            }
+        } // Habria que leer el archivo sacar los datos y poder agregar las reservas nuevas
     }
 
 }

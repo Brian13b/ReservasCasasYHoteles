@@ -424,7 +424,7 @@ namespace TP2_LabII
         {
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Filter = "Archivo de texto|*.txt|Archivo CSV|*.csv";
             saveFileDialog.Title = "Guardar clientes en archivo de texto";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -438,6 +438,52 @@ namespace TP2_LabII
         {
             miSistema.ExportarReservas(miSistema.Reservas);
         } // Exportar reservas 
+
+        private void guardarCalendarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "";
+                FormCSV FExportar = new FormCSV();
+                foreach (Propiedad p in miSistema.Propiedades)
+                {
+                    FExportar.cbPropiedades.Items.Add(p.Nombre.ToString());
+
+                }
+                
+                if (FExportar.ShowDialog() == DialogResult.OK)
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Archivo CSV|*.csv";
+                    saveFileDialog.Title = "Guardar calendario";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        path = saveFileDialog.FileName;
+                        string nombrePropiedad = FExportar.cbPropiedades.Text;
+                        miSistema.ExportarCalendario(nombrePropiedad, path);
+                    }
+                }
+
+                if (FExportar.ShowDialog() == DialogResult.Yes)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Archivo CSV|*.csv";
+                    openFileDialog.Title = "Imprtar calendario";
+
+                    if(openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        path = openFileDialog.FileName;
+                        string nombrePropiedad = FExportar.cbPropiedades.Text;
+                        miSistema.ImportarCalendario(nombrePropiedad, path);
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.StackTrace);
+            }
+        }
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -922,8 +968,6 @@ namespace TP2_LabII
         #endregion
 
         //Basicamente este completo.
-        //Falta el tema de importar y exportar el calendario de reservas de una propiedad en particular.
-        //Falta mejorar el tema de importar y exportar los clientes.
         //Falta mejorar el tema de la estadistica.
         //Por ultimo, una mejora de la interfaz grafica, desde lo estetico hasta lo funcional.
     }

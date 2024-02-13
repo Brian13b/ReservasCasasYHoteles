@@ -66,6 +66,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCSV.Designer.cs">
+      <DependentUpon>FormCSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEstadisticas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCSV.resx">
+      <DependentUpon>FormCSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEstadisticas.resx">
       <DependentUpon>FormEstadisticas.cs</DependentUpon>
