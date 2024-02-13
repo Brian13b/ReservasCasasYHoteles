@@ -59,7 +59,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExportarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportarReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.impoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarCalendarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edicionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -365,7 +365,7 @@
             this.toolStripSeparator3,
             this.ExportarClientesToolStripMenuItem,
             this.exportarReservasToolStripMenuItem,
-            this.impoToolStripMenuItem,
+            this.guardarCalendarioToolStripMenuItem,
             this.toolStripSeparator1,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -404,11 +404,12 @@
             this.exportarReservasToolStripMenuItem.Text = "Exportar Reservas";
             this.exportarReservasToolStripMenuItem.Click += new System.EventHandler(this.exportarReservasToolStripMenuItem_Click);
             // 
-            // impoToolStripMenuItem
+            // guardarCalendarioToolStripMenuItem
             // 
-            this.impoToolStripMenuItem.Name = "impoToolStripMenuItem";
-            this.impoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
-            this.impoToolStripMenuItem.Text = "Impo";
+            this.guardarCalendarioToolStripMenuItem.Name = "guardarCalendarioToolStripMenuItem";
+            this.guardarCalendarioToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.guardarCalendarioToolStripMenuItem.Text = "Guardar calendario";
+            this.guardarCalendarioToolStripMenuItem.Click += new System.EventHandler(this.guardarCalendarioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -577,7 +578,7 @@
         private System.Windows.Forms.ToolStripMenuItem cantidadDeReservasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cantidadDeHuespedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarReservasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem impoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guardarCalendarioToolStripMenuItem;
     }
 }
 
