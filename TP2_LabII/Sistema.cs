@@ -322,7 +322,7 @@ namespace TP2_LabII
         public void ExportarReservas(List<Reserva> reservas)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Filter = "Archivo de texto|*.txt|Archivo CSV|*.csv";
             saveFileDialog.Title = "Guardar reservas en archivo de texto";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -330,10 +330,12 @@ namespace TP2_LabII
                 string rutaArchivo = saveFileDialog.FileName;
                 FileStream fs = new FileStream(rutaArchivo, FileMode.Append, FileAccess.Write);
                 StreamWriter sw = new StreamWriter(fs);
+                sw.WriteLine("codigo;Nombre Usuario;Apellido Usuario;Fecha Ingreso;Fecha Egreso;Costo total");
 
                 foreach (Reserva reserva in reservas)
                 {
-                    sw.WriteLine($"{reserva.Propiedad};{reserva.Cliente};{reserva.FechaIngreso};{reserva.FechaEgreso}");
+                    sw.WriteLine($"{reserva.CodigoReserva};{reserva.Cliente.Nombre};{reserva.Cliente.Apellido};{reserva.FechaIngreso};{reserva.FechaEgreso};{reserva.CostoTotal}");
+                    //sw.WriteLine($"{reserva.Propiedad};{reserva.Cliente};{reserva.FechaIngreso};{reserva.FechaEgreso}");
                 }
 
                 sw.Close();
@@ -402,16 +404,19 @@ namespace TP2_LabII
         {
             string rutaArchivo = path;
 
-            FileStream fs = new FileStream(rutaArchivo, FileMode.Append, FileAccess.Write);
+            if (File.Exists(rutaArchivo))
+                File.Delete(rutaArchivo);
+
+            FileStream fs = new FileStream(rutaArchivo, FileMode.CreateNew, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
 
             string NombrePropiedad = propiedad;
 
-            sw.WriteLine($"Codigo Reserva;Fecha ingrso;Fecha Egreso");
+            sw.WriteLine($"Codigo Reserva;Fecha ingreso;Fecha Egreso");
 
             foreach(Reserva r in Reservas)
             {            
-                if(NombrePropiedad== r.Propiedad.Nombre)
+                if(NombrePropiedad == r.Propiedad.Nombre)
                 {
                     sw.WriteLine($"{r.CodigoReserva};{r.FechaIngreso};{r.FechaEgreso}");
                 }
@@ -421,19 +426,27 @@ namespace TP2_LabII
             fs.Close();
         }
 
-        public void ImportarCalendario(string propiedad, string path)
+        public void ImportarCalendario(string path)
         {
             string rutaArchivo = path;
+            string[] datos;
 
-            FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
 
-            string nombre = propiedad;
+            sr.ReadLine();
             string renglon = sr.ReadLine();
             while(renglon != null)
             {
-
+                datos = renglon.Split(';');
+                string codigo = datos[0];
+                Reserva Importar = BuscarReserva(codigo);
+                Importar.FechaIngreso = Convert.ToDateTime(datos[1]);
+                 Importar.FechaEgreso = Convert.ToDateTime(datos[2]);
+                renglon = sr.ReadLine();
             }
+            sr.Close();
+            fs.Close();
         } // Habria que leer el archivo sacar los datos y poder agregar las reservas nuevas
     }
 

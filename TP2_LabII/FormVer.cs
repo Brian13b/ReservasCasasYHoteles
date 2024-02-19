@@ -60,6 +60,10 @@ namespace TP2_LabII
             contador++;
             txtNombreApellido.Clear();
             txtDni.Clear();
+            if (contador ==Cantidad)
+            {
+                btnCargar.Enabled = false;
+            }
         }
 
         private void tbCantidad_Leave(object sender, EventArgs e)

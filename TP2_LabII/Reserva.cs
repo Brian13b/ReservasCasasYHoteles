@@ -14,7 +14,7 @@ namespace TP2_LabII
         public string CodigoReserva { get; private set; }
         public DateTime FechaIngreso { get; set; }
         public int TiempoEstadia { get; set; }
-        public DateTime FechaEgreso { get; private set; }
+        public DateTime FechaEgreso { get; set; }
         public Propiedad Propiedad { get; set; }
         public Cliente Cliente { get; set; }
         public double CostoTotal { get; private set; }

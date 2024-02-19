@@ -14,7 +14,7 @@ namespace TP2_LabII
         private Cliente cliente;
         public Sistema miSistema;
 
-        private int nroPag;
+        private int nroPag=0;
         Image imfondo;
         Bitmap imlogo;
         string ResumenPropiedad;
@@ -231,6 +231,10 @@ namespace TP2_LabII
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
+            if (nroPag >= 2)
+            {
+                nroPag = 0;
+            }
             string ruta = Path.Combine(Application.StartupPath, "..", "..", "Resource", "Logo.png");
             imlogo = new Bitmap(ruta);
             Graphics g = e.Graphics;
@@ -250,66 +254,72 @@ namespace TP2_LabII
             int altoContenido = e.PageBounds.Height - margenSuperior * 2;
 
             Pen penContenido = new Pen(Color.Black, 2);
-
-            if (nroPag == 0)
+            if (nroPag < 2)
             {
-                // Página 1
-                g.DrawImage(imlogo, xImagen - 500, yImagen, anchoImagen, altoImagen);
-                g.DrawImage(imfondo, xImagen, yImagen, anchoImagen, altoImagen);
-                g.DrawRectangle(penContenido, margenDerecho, margenSuperior, anchoContenido, altoContenido);
-                g.DrawString(ResumenPropiedad, font, brush, new RectangleF(margenDerecho + 10, margenSuperior + 10, anchoContenido + 10, altoContenido + 10));
-                g.DrawString("Original", font, brush, 30, 30);
-                int contayuday = 400;
-                int contayudax = margenDerecho + 10;
-                for (int i = 0; i < huesped.Length; i++)
+                if (nroPag == 0)
                 {
-                    string nombre;
-                    string dni;
-                    string nacimiento;
-                    string[] dato = new string[3];
+                    // Página 1
+                    g.DrawImage(imlogo, xImagen - 500, yImagen, anchoImagen, altoImagen);
+                    g.DrawImage(imfondo, xImagen, yImagen, anchoImagen, altoImagen);
+                    g.DrawRectangle(penContenido, margenDerecho, margenSuperior, anchoContenido, altoContenido);
+                    g.DrawString(ResumenPropiedad, font, brush, new RectangleF(margenDerecho + 10, margenSuperior + 10, anchoContenido + 10, altoContenido + 10));
+                    g.DrawString("Original", font, brush, 30, 30);
+                    int contayuday = 400;
+                    int contayudax = margenDerecho + 10;
+                    for (int i = 0; i < huesped.Length; i++)
+                    {
+                        string nombre;
+                        string dni;
+                        string nacimiento;
+                        string[] dato = new string[3];
 
-                    dato = huesped[i].Split(';');
+                        dato = huesped[i].Split(';');
 
-                    nombre = dato[0];
-                    dni = dato[1];
-                    nacimiento = dato[2];
-                    g.DrawString(nombre, font, brush, contayudax, contayuday);
-                    g.DrawString(dni, font, brush, contayudax + 100, contayuday);
-                    g.DrawString(nacimiento, font, brush, contayudax + 200, contayuday);
-                    contayuday += 50;
+                        nombre = dato[0];
+                        dni = dato[1];
+                        nacimiento = dato[2];
+                        g.DrawString(nombre, font, brush, contayudax, contayuday);
+                        g.DrawString(dni, font, brush, contayudax + 150, contayuday);
+                        g.DrawString(nacimiento, font, brush, contayudax + 250, contayuday);
+                        contayuday += 50;
+                    }
+
+                }
+                else if (nroPag == 1)
+                {
+                    // Página 2
+                    g.DrawImage(imlogo, xImagen - 500, yImagen, anchoImagen, altoImagen);
+                    g.DrawImage(imfondo, xImagen, yImagen, anchoImagen, altoImagen);
+                    g.DrawRectangle(penContenido, margenDerecho, margenSuperior, anchoContenido, altoContenido);
+                    g.DrawString(ResumenPropiedad, font, brush, new RectangleF(margenDerecho + 10, margenSuperior + 10, anchoContenido + 10, altoContenido + 10));
+                    g.DrawString("Copia", font, brush, 30, 30);
+                    int contayuday = 400;
+                    int contayudax = margenDerecho + 10;
+                    for (int i = 0; i < huesped.Length; i++)
+                    {
+                        string nombre;
+                        string dni;
+                        string nacimiento;
+                        string[] dato = new string[3];
+
+                        dato = huesped[i].Split(';');
+
+                        nombre = dato[0];
+                        dni = dato[1];
+                        nacimiento = dato[2];
+                        g.DrawString(nombre, font, brush, contayudax, contayuday);
+                        g.DrawString(dni, font, brush, contayudax + 100, contayuday);
+                        g.DrawString(nacimiento, font, brush, contayudax + 200, contayuday);
+                        contayuday += 50;
+                    }
                 }
 
+                nroPag++;
             }
-            else if (nroPag == 1)
+            else
             {
-                // Página 2
-                g.DrawImage(imlogo, xImagen - 500, yImagen, anchoImagen, altoImagen);
-                g.DrawImage(imfondo, xImagen, yImagen, anchoImagen, altoImagen);
-                g.DrawRectangle(penContenido, margenDerecho, margenSuperior, anchoContenido, altoContenido);
-                g.DrawString(ResumenPropiedad, font, brush, new RectangleF(margenDerecho + 10, margenSuperior + 10, anchoContenido + 10, altoContenido + 10));
-                g.DrawString("Copia", font, brush, 30, 30);
-                int contayuday = 400;
-                int contayudax = margenDerecho + 10;
-                for (int i = 0; i < huesped.Length; i++)
-                {
-                    string nombre;
-                    string dni;
-                    string nacimiento;
-                    string[] dato = new string[3];
-
-                    dato = huesped[i].Split(';');
-
-                    nombre = dato[0];
-                    dni = dato[1];
-                    nacimiento = dato[2];
-                    g.DrawString(nombre, font, brush, contayudax, contayuday);
-                    g.DrawString(dni, font, brush, contayudax + 100, contayuday);
-                    g.DrawString(nacimiento, font, brush, contayudax + 200, contayuday);
-                    contayuday += 50;
-                }
+                nroPag = 0;
             }
-
-            nroPag++;
 
             // Indica si hay más páginas
             e.HasMorePages = nroPag < 2;
@@ -371,10 +381,11 @@ namespace TP2_LabII
 
         private void bajaPropiedadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Seleccione una propiedad de la grilla");
+            
+            DialogResult resultado = MessageBox.Show($"Seleccione la propiedad a eliminar antes de ingresar a 'Baja propidad. ¿Ya selecciono la propiedad?", "Seleccion confirmar", MessageBoxButtons.YesNo);
             DataGridViewRow selectedRow = dgvMostrarPropiedades.CurrentRow;
 
-            if (selectedRow != null)
+            if (resultado == DialogResult.Yes)
             {
                 string codigoPropiedad = selectedRow.Cells["colCodigo"].Value.ToString();
                 Propiedad propiedadSeleccionada = null;
@@ -389,24 +400,20 @@ namespace TP2_LabII
 
                 if (propiedadSeleccionada != null)
                 {
-                    DialogResult result = MessageBox.Show($"¿Estás seguro de dar de baja la propiedad {propiedadSeleccionada.Nombre}?", "Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show($"¿Estás seguro de dar de baja la propiedad {propiedadSeleccionada.Nombre}?", "Confirmar baja", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    if (result == DialogResult.Yes)
+                    if (result == DialogResult.OK)
                     {
                         miSistema.BajaPropiedad(propiedadSeleccionada);
                         CargarDatagrid();
 
-                        MessageBox.Show("Propiedad dada de baja exitosamente.");
+                        MessageBox.Show("Propiedad dada de baja exitosamente");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró la propiedad correspondiente al código seleccionado.");
+                    MessageBox.Show("No se encontró la propiedad correspondiente al código seleccionado");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una propiedad de la grilla antes de dar de baja.");
             }
         }  // Baja propiedad - Anda Bien
 
@@ -450,7 +457,7 @@ namespace TP2_LabII
                     FExportar.cbPropiedades.Items.Add(p.Nombre.ToString());
 
                 }
-                
+
                 if (FExportar.ShowDialog() == DialogResult.OK)
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -465,17 +472,17 @@ namespace TP2_LabII
                     }
                 }
 
-                if (FExportar.ShowDialog() == DialogResult.Yes)
+                else if (FExportar.ShowDialog() == DialogResult.Yes)
                 {
                     OpenFileDialog openFileDialog = new OpenFileDialog();
                     openFileDialog.Filter = "Archivo CSV|*.csv";
                     openFileDialog.Title = "Imprtar calendario";
 
-                    if(openFileDialog.ShowDialog() == DialogResult.OK)
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         path = openFileDialog.FileName;
                         string nombrePropiedad = FExportar.cbPropiedades.Text;
-                        miSistema.ImportarCalendario(nombrePropiedad, path);
+                        miSistema.ImportarCalendario(path);
                     }
                 }
             }
@@ -629,12 +636,12 @@ namespace TP2_LabII
                     Graphics dibujar = argsPanel.Graphics;
                     Brush brushTitulo = new SolidBrush(Color.Black);
                     Brush brush = new SolidBrush(Color.Black);
-                    Font fontTitulo = new Font("Arial", 14, FontStyle.Bold);
+                    Font fontTitulo = new Font("Arial", 15, FontStyle.Underline);
                     Font font = new Font("Arial", 14);
                     Color colores = new Color();
                     Random random = new Random();
 
-                    dibujar.DrawString("Porcentaje de reservas segun cantidad de huespedes.", fontTitulo, brushTitulo, 380, 60);
+                    dibujar.DrawString("Porcentaje de reservas segun cantidad de huespedes.", fontTitulo, brushTitulo, 200, 60);
 
                     int posX = 180;
                     int posY = 130;

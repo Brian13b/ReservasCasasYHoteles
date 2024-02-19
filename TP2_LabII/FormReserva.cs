@@ -24,9 +24,17 @@ namespace TP2_LabII
         Reserva reservaAnular;
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            
             Codigo = txtCodigo.Text;
             reservaAnular = system.BuscarReserva(Codigo);
-            listBox1.Items.Add(reservaAnular.ToString());
+            if (reservaAnular != null)
+            {
+                listBox1.Items.Add(reservaAnular.ToString());
+            }
+            else
+                MessageBox.Show("No existe reserva para este codigo");
+            
+
         }
 
         private void btnAnular_Click(object sender, EventArgs e)
