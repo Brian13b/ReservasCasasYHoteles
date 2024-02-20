@@ -26,10 +26,10 @@ namespace TP2_LabII
 
         public double CalcularPrecio(int tiempoEstadia, int numeroHabitacion)
         {
-            if (Estrellas != 2)
-                PrecioBase *= 1.4;
-
             double precioTotal = PrecioBase;
+
+            if (Estrellas != 2)
+                precioTotal *= 1.4;
 
             int numero = tiempoEstadia * 2;
 

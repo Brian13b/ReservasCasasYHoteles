@@ -22,14 +22,14 @@ namespace TP2_LabII
 
             if (tipo == "Simple")
                 Numero = 100 + numero;
+
             else if (tipo == "Doble")
             {
-                numero = 10;
                 Numero = 200 + numero;
             }
+
             else if (tipo == "Triple")
             {
-                numero = 10;
                 Numero = 300 + numero;
             }
 

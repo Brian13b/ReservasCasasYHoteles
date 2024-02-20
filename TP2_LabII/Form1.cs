@@ -196,7 +196,7 @@ namespace TP2_LabII
                     MessageBox.Show("Error al registrar la propiedad: " + ex.Message);
                 }
             }
-        }  // Alta Propiedad - Anda Bien
+        }  // Alta Propiedad
 
         private void dgvMostrarPropiedades_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -204,7 +204,7 @@ namespace TP2_LabII
             {
                 MostrarVentanaVerMas(e.RowIndex);
             }
-        }  // Boton Ver Mas - Anda Bien 
+        }  // Boton Ver Mas 
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -227,7 +227,7 @@ namespace TP2_LabII
 
                 MessageBox.Show("Cliente registrado con éxito.");
             }
-        } // Agrega un nuevo Usuario - Anda Bien
+        } // Agrega un nuevo Usuario
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -279,8 +279,8 @@ namespace TP2_LabII
                         dni = dato[1];
                         nacimiento = dato[2];
                         g.DrawString(nombre, font, brush, contayudax, contayuday);
-                        g.DrawString(dni, font, brush, contayudax + 150, contayuday);
-                        g.DrawString(nacimiento, font, brush, contayudax + 250, contayuday);
+                        g.DrawString(dni, font, brush, contayudax + 300, contayuday);
+                        g.DrawString(nacimiento, font, brush, contayudax + 400, contayuday);
                         contayuday += 50;
                     }
 
@@ -308,8 +308,8 @@ namespace TP2_LabII
                         dni = dato[1];
                         nacimiento = dato[2];
                         g.DrawString(nombre, font, brush, contayudax, contayuday);
-                        g.DrawString(dni, font, brush, contayudax + 100, contayuday);
-                        g.DrawString(nacimiento, font, brush, contayudax + 200, contayuday);
+                        g.DrawString(dni, font, brush, contayudax + 300, contayuday);
+                        g.DrawString(nacimiento, font, brush, contayudax + 400, contayuday);
                         contayuday += 50;
                     }
                 }
@@ -328,7 +328,7 @@ namespace TP2_LabII
             font.Dispose();
             brush.Dispose();
             penContenido.Dispose();
-        }  // Imprimible - Listo el logo
+        }  // Imprimible 
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -355,7 +355,20 @@ namespace TP2_LabII
             List<Propiedad> propiedadesFiltradas = miSistema.FiltrarPropiedades(ciudad, desde, hasta, viajeros, tipo, esFinde);
 
             MostarPropiedadesEnDGV(propiedadesFiltradas);
-        }  // Filtra - Anda Bien
+        }  // Filtra
+
+        private void btnVerTodas_Click(object sender, EventArgs e)
+        {
+            cbCiudad.SelectedIndex = 0;
+            dtDesde.Value = DateTime.Now;
+            dtHasta.Value = DateTime.Now;
+            numViajeros.Value = 1;
+            rbCasa.Checked = false;
+            rbHotel.Checked = false;
+            rbCasaFinde.Checked = false;
+
+            CargarDatagrid();
+        } // Limpia y muestra
 
         private void modificarPropiedadToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -377,7 +390,7 @@ namespace TP2_LabII
             }
 
             CargarDatagrid();
-        }  // Modificar Propiedad - Anda joya
+        }  // Modificar Propiedad 
 
         private void bajaPropiedadToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -415,7 +428,7 @@ namespace TP2_LabII
                     MessageBox.Show("No se encontró la propiedad correspondiente al código seleccionado");
                 }
             }
-        }  // Baja propiedad - Anda Bien
+        }  // Baja propiedad 
 
         private void anularReservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -425,7 +438,7 @@ namespace TP2_LabII
             {
                 MessageBox.Show("Se cancelo cheto bb");
             }
-        }  // Anular Reserva - Busca y anula una reserva
+        }  // Anular Reserva 
 
         private void ExportarClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -504,7 +517,7 @@ namespace TP2_LabII
             {
                 MessageBox.Show("Error al abrir el archivo HTML: " + ex.Message);
             }
-        } // Ventana ayuda - Anda bien
+        } // Ventana ayuda
 
         private void acercaDeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -514,7 +527,7 @@ namespace TP2_LabII
             acercaDe.timer1.Enabled = true;
             acercaDe.ShowDialog();
             acercaDe.Dispose();
-        } // Ventana Acerca de -  Anda perfecto
+        } // Ventana Acerca de 
 
         private void cantidadDeReservasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -523,8 +536,7 @@ namespace TP2_LabII
             miEstadistica.panel1.Visible = true;
             miEstadistica.Load += (s, args) =>
             {
-                // Aquí se realiza la configuración del gráfico en el Panel
-                Panel panelGrafico = miEstadistica.panel1; // Asegúrate de que el Panel se llame panelGrafico
+                Panel panelGrafico = miEstadistica.panel1; 
 
                 panelGrafico.Paint += (senderPanel, argsPanel) =>
                 {
@@ -614,9 +626,8 @@ namespace TP2_LabII
                 // Invalidar el panel para que se dispare el evento Paint
                 panelGrafico.Invalidate();
             };
-            // Show the modal form
             miEstadistica.ShowDialog();
-        }    // Grafico de torta - Anda Bien
+        }    // Grafico de torta 
 
         private void cantidadDeHuespedToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -627,8 +638,8 @@ namespace TP2_LabII
 
             miEstadistica1.Load += (s, args) =>
             {
-                // Aquí se realiza la configuración del gráfico en el Panel
-                Panel panelGrafico = miEstadistica1.panel2; // Asegúrate de que el Panel se llame panelGrafico
+                
+                Panel panelGrafico = miEstadistica1.panel2; 
 
                 panelGrafico.Paint += (senderPanel, argsPanel) =>
                 {
@@ -691,13 +702,7 @@ namespace TP2_LabII
                         dibujar.DrawString("Huespedes: " + (i + 1), font, brushTitulo, posX - 130, posY + 6);
                         posY += 50;
                     }
-                    //colores = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
-                    //brush = new SolidBrush(colores);
-                    //int largoFinall = (h[4] * largo) / reservasTotales;
-                    //dibujar.FillRectangle(brush, posX + 30, posY, largoFinall, ancho);
-                    //string textoF = "%" + h[4] * 100 / reservasTotales + " de reservas totales.";
-                    //dibujar.DrawString(textoF, font, brushTitulo, posX + 30, posY + 5);
-                    //dibujar.DrawString("Mas de 6 huespedes:", font, brushTitulo, posX - 165, posY + 6);
+                    
                 };
                 panelGrafico.Invalidate();
             };
@@ -705,12 +710,12 @@ namespace TP2_LabII
 
 
 
-        }  // Grafico de barras - Anda Bien
+        }  // Grafico de barras 
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
-        } // Boton Salir - Anda Bien
+        } // Boton Salir 
 
         #endregion
 
@@ -878,6 +883,7 @@ namespace TP2_LabII
                 if (Convert.ToString(p.Codigo) == codigoseleccionado)
                 {
                     ventanaVerMas.txtDescripcion.Text = p.ToString();
+                    DateTime fechaActual = DateTime.Now;
 
                     for (int i = 0; i < p.listaImagenes.Length; i++)
                     {
@@ -889,18 +895,27 @@ namespace TP2_LabII
                     {
                         ventanaVerMas.groupBox1.Enabled = true;
 
-                        List<int> habitacionesDisponibles = new List<int>();
-                        habitacionesDisponibles = ((Hotel)p).ObtenerHabitacionesDisponibles();
+                        List<int> habitacionesDisponibles = ((Hotel)p).ObtenerHabitacionesDisponibles();
                         ventanaVerMas.cbxHabitacion.Items.Clear();
                         foreach (int numeroHabitacion in habitacionesDisponibles)
                         {
                             ventanaVerMas.cbxHabitacion.Items.Add(numeroHabitacion);
                         }
-                    }
+                        ventanaVerMas.cbxHabitacion.SelectedIndexChanged += (sender, e) =>
+                        {
+                            int habitacionSeleccionada = Convert.ToInt32(ventanaVerMas.cbxHabitacion.SelectedItem);
 
-                    DateTime fechaActual = DateTime.Now;
-                    List<DateTime> fechasResaltadas = miSistema.Pintar(p, fechaActual);
-                    ventanaVerMas.calReserva.BoldedDates = fechasResaltadas.ToArray();
+                            List<DateTime> fechasResaltadas = miSistema.PintarHabitacion((Hotel)p, habitacionSeleccionada);
+
+                            ventanaVerMas.calReserva.BoldedDates = fechasResaltadas.ToArray();
+                        };
+                    }
+                    if (p is Casa)
+                    {
+                        ventanaVerMas.groupBox1.Enabled = false;
+                        List<DateTime> fechasResaltadas = miSistema.Pintar(p);
+                        ventanaVerMas.calReserva.BoldedDates = fechasResaltadas.ToArray();
+                    }
 
                     if (ventanaVerMas.ShowDialog() == DialogResult.OK)
                     {
@@ -973,10 +988,6 @@ namespace TP2_LabII
         }
 
         #endregion
-
-        //Basicamente este completo.
-        //Falta mejorar el tema de la estadistica.
-        //Por ultimo, una mejora de la interfaz grafica, desde lo estetico hasta lo funcional.
     }
 }
 

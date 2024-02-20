@@ -57,6 +57,7 @@ namespace TP2_LabII
             Cliente = cliente;
             CantHuespedes = cantHuespedes;
             CalcularCosto(propiedad);
+            GuardarUltimoCodigo(ultimoNumeroReserva);
         }
 
         static Reserva()
@@ -66,7 +67,7 @@ namespace TP2_LabII
 
         public static int ObtenerUltimoCodigo()
         {
-            string rutaArchivo = "ultimocodigo.txt";
+            string rutaArchivo = "ultimocodigoreserva.txt";
 
             if (File.Exists(rutaArchivo))
             {
@@ -84,9 +85,9 @@ namespace TP2_LabII
             return 0;
         }
 
-        public static void GuardarUltimoCodigo()
+        public static void GuardarUltimoCodigo(int numero)
         {
-            string rutaArchivo = "ultimocodigo.txt";
+            string rutaArchivo = "ultimocodigoreserva.txt";
 
             try
             {
@@ -146,8 +147,10 @@ namespace TP2_LabII
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"Reserva: {CodigoReserva} - {Propiedad}");
-            sb.AppendLine($"Cliente: {Cliente}");
+            sb.AppendLine($"Reserva: {CodigoReserva} - {Propiedad.Nombre}");
+            if (Propiedad is Hotel)
+                sb.AppendLine($"Habitacion: {NumeroHabitacion}");
+            sb.AppendLine($"Cliente: {Cliente.Apellido} {Cliente.Nombre} - {Cliente.Dni}");
             sb.AppendLine($"Fecha Ingreso/Egreso: {FechaIngreso} - {FechaEgreso}");
             sb.AppendLine($"Costo Total: {CostoTotal:C}");
             return sb.ToString();

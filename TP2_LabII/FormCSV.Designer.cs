@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCSV));
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnImportar = new System.Windows.Forms.Button();
             this.cbPropiedades = new System.Windows.Forms.ComboBox();
@@ -37,6 +38,7 @@
             // btnExportar
             // 
             this.btnExportar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Location = new System.Drawing.Point(23, 186);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(100, 39);
@@ -47,6 +49,7 @@
             // btnImportar
             // 
             this.btnImportar.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImportar.Location = new System.Drawing.Point(205, 186);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(88, 39);
@@ -65,9 +68,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(36, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 16);
+            this.label1.Size = new System.Drawing.Size(198, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Seleccionar Propiedad";
             // 
@@ -75,13 +79,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(337, 277);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbPropiedades);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnExportar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCSV";
-            this.Text = "FormCSV";
+            this.Text = "Importar/Exportar Calendario";
             this.ResumeLayout(false);
             this.PerformLayout();
 

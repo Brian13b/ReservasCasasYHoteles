@@ -29,7 +29,7 @@ namespace TP2_LabII
             reservaAnular = system.BuscarReserva(Codigo);
             if (reservaAnular != null)
             {
-                listBox1.Items.Add(reservaAnular.ToString());
+                txtAnular.Text = reservaAnular.ToString();
             }
             else
                 MessageBox.Show("No existe reserva para este codigo");

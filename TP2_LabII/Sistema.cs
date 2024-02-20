@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 
@@ -208,7 +209,7 @@ namespace TP2_LabII
             return disponible;
         }  // Verifica disponibilidad de habitaciones 
 
-        public List<DateTime> Pintar(Propiedad propiedad, DateTime fecha)  // Ver el tema que pinte por habitacion??
+        public List<DateTime> Pintar(Propiedad propiedad) 
         {
             reservasEnPropiedad = new List<Reserva>();
 
@@ -224,20 +225,36 @@ namespace TP2_LabII
 
             foreach (Reserva reserva in reservasEnPropiedad)
             {
-                for (DateTime fechaReserva = reserva.FechaIngreso; fechaReserva <= reserva.FechaEgreso; fechaReserva = fechaReserva.AddDays(1))
+                if (propiedad is Casa)
                 {
-                    if (propiedad is Hotel && ((Hotel)propiedad).BuscarHabitacion(reserva.NumeroHabitacion) != null)
-                    {
-                        fechasConReservas.Add(fechaReserva);
-                    }
-                    else
+                    for (DateTime fechaReserva = reserva.FechaIngreso; fechaReserva <= reserva.FechaEgreso; fechaReserva = fechaReserva.AddDays(1))
                     {
                         fechasConReservas.Add(fechaReserva);
                     }
                 }
             }
             return fechasConReservas;
-        }
+        } // Pinta las fechas de las reservas de las casas
+
+        public List<DateTime> PintarHabitacion(Hotel hotel, int numeroHabitacion)
+        {
+            List<Reserva> reservasEnHabitacion = Reservas
+                .Where(reserva => reserva.Propiedad == hotel && reserva.NumeroHabitacion == numeroHabitacion)
+                .ToList();
+
+            List<DateTime> fechasConReservas = new List<DateTime>();
+
+            foreach (Reserva reserva in reservasEnHabitacion)
+            {
+                for (DateTime fechaReserva = reserva.FechaIngreso; fechaReserva <= reserva.FechaEgreso; fechaReserva = fechaReserva.AddDays(1))
+                {
+                    fechasConReservas.Add(fechaReserva);
+                }
+            }
+
+            return fechasConReservas;
+        } // Pinta las fechas de las reservas de las habitaciones de los hoteles
+
 
         public List<Propiedad> FiltrarPropiedades(string ciudad, DateTime desde, DateTime hasta, int viajeros, string tipo, bool esFinde)
         {
@@ -316,7 +333,6 @@ namespace TP2_LabII
 
             sw.Close();
             fs.Close();
-
         }
 
         public void ExportarReservas(List<Reserva> reservas)
@@ -328,14 +344,17 @@ namespace TP2_LabII
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string rutaArchivo = saveFileDialog.FileName;
-                FileStream fs = new FileStream(rutaArchivo, FileMode.Append, FileAccess.Write);
+
+                if (File.Exists(rutaArchivo))
+                    File.Delete(rutaArchivo);
+
+                FileStream fs = new FileStream(rutaArchivo, FileMode.CreateNew, FileAccess.Write);
                 StreamWriter sw = new StreamWriter(fs);
                 sw.WriteLine("codigo;Nombre Usuario;Apellido Usuario;Fecha Ingreso;Fecha Egreso;Costo total");
 
                 foreach (Reserva reserva in reservas)
                 {
                     sw.WriteLine($"{reserva.CodigoReserva};{reserva.Cliente.Nombre};{reserva.Cliente.Apellido};{reserva.FechaIngreso};{reserva.FechaEgreso};{reserva.CostoTotal}");
-                    //sw.WriteLine($"{reserva.Propiedad};{reserva.Cliente};{reserva.FechaIngreso};{reserva.FechaEgreso}");
                 }
 
                 sw.Close();
@@ -447,7 +466,8 @@ namespace TP2_LabII
             }
             sr.Close();
             fs.Close();
-        } // Habria que leer el archivo sacar los datos y poder agregar las reservas nuevas
+        } 
+
     }
 
 }

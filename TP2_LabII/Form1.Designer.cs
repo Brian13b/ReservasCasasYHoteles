@@ -39,6 +39,7 @@
             this.colImagen = new System.Windows.Forms.DataGridViewImageColumn();
             this.colVerMas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnVerTodas = new System.Windows.Forms.Button();
             this.numViajeros = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -184,6 +185,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.btnVerTodas);
             this.groupBox1.Controls.Add(this.numViajeros);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnBuscar);
@@ -202,6 +204,19 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtar";
+            // 
+            // btnVerTodas
+            // 
+            this.btnVerTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVerTodas.Font = new System.Drawing.Font("Bookman Old Style", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerTodas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerTodas.Location = new System.Drawing.Point(719, 103);
+            this.btnVerTodas.Name = "btnVerTodas";
+            this.btnVerTodas.Size = new System.Drawing.Size(177, 40);
+            this.btnVerTodas.TabIndex = 17;
+            this.btnVerTodas.Text = "Ver Todas";
+            this.btnVerTodas.UseVisualStyleBackColor = true;
+            this.btnVerTodas.Click += new System.EventHandler(this.btnVerTodas_Click);
             // 
             // numViajeros
             // 
@@ -226,9 +241,9 @@
             this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBuscar.Font = new System.Drawing.Font("Bookman Old Style", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscar.Location = new System.Drawing.Point(768, 21);
+            this.btnBuscar.Location = new System.Drawing.Point(719, 21);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(128, 122);
+            this.btnBuscar.Size = new System.Drawing.Size(177, 82);
             this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -509,6 +524,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(935, 626);
             this.Controls.Add(this.groupBox1);
@@ -579,6 +595,7 @@
         private System.Windows.Forms.ToolStripMenuItem cantidadDeHuespedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarReservasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guardarCalendarioToolStripMenuItem;
+        private System.Windows.Forms.Button btnVerTodas;
     }
 }
 

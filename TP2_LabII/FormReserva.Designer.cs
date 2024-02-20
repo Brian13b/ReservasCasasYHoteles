@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReserva));
             this.txtCodigo = new System.Windows.Forms.MaskedTextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnAnular = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtAnular = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtCodigo
@@ -44,6 +45,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(204, 32);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 49);
@@ -52,18 +54,10 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(54, 98);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(712, 164);
-            this.listBox1.TabIndex = 3;
-            // 
             // btnAnular
             // 
             this.btnAnular.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAnular.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnular.Location = new System.Drawing.Point(608, 39);
             this.btnAnular.Name = "btnAnular";
             this.btnAnular.Size = new System.Drawing.Size(139, 53);
@@ -75,11 +69,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(51, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 16);
+            this.label1.Size = new System.Drawing.Size(62, 18);
             this.label1.TabIndex = 5;
             this.label1.Text = "Codigo";
+            // 
+            // txtAnular
+            // 
+            this.txtAnular.Location = new System.Drawing.Point(54, 119);
+            this.txtAnular.Multiline = true;
+            this.txtAnular.Name = "txtAnular";
+            this.txtAnular.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAnular.Size = new System.Drawing.Size(693, 142);
+            this.txtAnular.TabIndex = 6;
             // 
             // FormReserva
             // 
@@ -87,11 +91,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(800, 286);
+            this.Controls.Add(this.txtAnular);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAnular);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtCodigo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormReserva";
             this.Text = "Cancelar Reserva";
             this.ResumeLayout(false);
@@ -102,8 +107,8 @@
         #endregion
         public System.Windows.Forms.MaskedTextBox txtCodigo;
         private System.Windows.Forms.Button btnAnular;
-        public System.Windows.Forms.ListBox listBox1;
         public System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtAnular;
     }
 }
