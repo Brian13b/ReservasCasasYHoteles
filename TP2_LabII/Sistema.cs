@@ -322,7 +322,7 @@ namespace TP2_LabII
         public void ExportarReservas(List<Reserva> reservas)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Archivo de texto|*.txt";
+            saveFileDialog.Filter = "Archivo de texto|*.txt|Archivo CSV|*.csv";
             saveFileDialog.Title = "Guardar reservas en archivo de texto";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
