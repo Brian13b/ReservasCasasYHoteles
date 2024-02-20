@@ -988,6 +988,51 @@ namespace TP2_LabII
         }
 
         #endregion
+
+        private void recaudacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecaudacionFinal recau = new RecaudacionFinal(miSistema);
+            recau.CalcularRecaudacionTotal();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivo de texto|*.txt|Archivo CSV|*.csv";
+            saveFileDialog.Title = "Guardar recaudacion en archivo de texto";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string rutaArchivo = saveFileDialog.FileName;
+
+                if (File.Exists(rutaArchivo))
+                    File.Delete(rutaArchivo);
+
+                FileStream fs=null;
+                StreamWriter sw=null;
+
+                try
+                {
+                    fs = new FileStream(rutaArchivo, FileMode.CreateNew, FileAccess.Write);
+                    sw = new StreamWriter(fs);
+
+                    sw.WriteLine($"Id;Nombre;Cantidad Reserva;Costo Total");
+
+                    foreach (Recaudacion r in recau.ListaRecaudacion)
+                    {
+                        sw.WriteLine($"{r.Codigo};{r.NombrePropiedad};{r.CantReservas};{r.CostoTotal}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (sw != null)
+                        sw.Close();
+                    if (fs != null)
+                        fs.Close();
+                }
+            }
+        }
     }
 }
 

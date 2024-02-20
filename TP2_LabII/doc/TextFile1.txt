@@ -1,0 +1,3 @@
+﻿recaudacion y cantidad de reservas por propietario 
+
+propiedad |  cantidad reservas | total

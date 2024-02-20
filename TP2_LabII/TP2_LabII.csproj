@@ -103,6 +103,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propiedad.cs" />
+    <Compile Include="Recaudacion.cs" />
+    <Compile Include="RecaudacionFinal.cs" />
     <Compile Include="Reserva.cs" />
     <Compile Include="Sistema.cs" />
     <EmbeddedResource Include="AcercaDe.resx">
@@ -155,6 +157,7 @@
   <ItemGroup>
     <None Include="Resource\flecha izq.png" />
     <None Include="Resource\flecha der.png" />
+    <Content Include="doc\TextFile1.txt" />
     <Content Include="Resource\Logo.png" />
     <None Include="Resource\l.png" />
     <None Include="Resource\Lupa.png" />

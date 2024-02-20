@@ -20,6 +20,7 @@ namespace TP2_LabII
             Clientes = new List<Cliente>();
             Propiedades = new List<Propiedad>();
             Reservas = new List<Reserva>();
+            
         }
 
         public void AgregarCliente(Cliente cliente)
@@ -176,6 +177,7 @@ namespace TP2_LabII
                 if (!(fecha < reserva.FechaIngreso || fecha >= reserva.FechaEgreso))
                 {
                     disponible = false;
+                    break;
                     //throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
                 }
                 else if (disponible == false)
@@ -206,6 +208,7 @@ namespace TP2_LabII
                     if (!(fecha < reserva.FechaIngreso || fecha >= reserva.FechaEgreso))
                     {
                         disponible = false;
+                        break;
                         //throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
                     }
                     else if(disponible == false)
