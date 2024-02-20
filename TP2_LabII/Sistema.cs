@@ -176,7 +176,11 @@ namespace TP2_LabII
                 if (!(fecha < reserva.FechaIngreso || fecha >= reserva.FechaEgreso))
                 {
                     disponible = false;
-                    throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
+                    //throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
+                }
+                else if (disponible == false)
+                {
+                    MessageBox.Show("No esta disponible en las fechas solicitadas.");
                 }
             }
             return disponible;
@@ -202,7 +206,11 @@ namespace TP2_LabII
                     if (!(fecha < reserva.FechaIngreso || fecha >= reserva.FechaEgreso))
                     {
                         disponible = false;
-                        throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
+                        //throw new MisExcepciones("No esta disponible en las fechas solicitadas.");
+                    }
+                    else if(disponible == false)
+                    {
+                        MessageBox.Show("No esta disponible en las fechas solicitadas.");
                     }
                 }
             }
